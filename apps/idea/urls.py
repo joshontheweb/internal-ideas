@@ -8,8 +8,8 @@ from voting.models import Vote
 
 
 info_dict = {
-    # 'queryset': Idea.objects.all(),
-    'queryset': Vote.objects.get_top(Idea, limit=3),
+    'queryset': Idea.objects.all(),
+    # 'queryset': Vote.objects.get_top(Idea, limit=3),
     'template_object_name': 'idea',
 }
 

@@ -36,7 +36,7 @@
 			<h3><a href="{{ idea.get_absolute_url }}" title="View the rest of{{ idea.title }}">{{ idea.title }}</a></h3>
 			<p>Posted <span class="date">{{ idea.date|naturalday }}</span> by <span class="author"><a href="#" title="{{ idea.author }}'s profile">{{ idea.author|capfirst }}</a></span></p>
 		</div><!-- /.title -->
-		<p class="description">{{ idea.description|truncatewords:50 }}</p>
+		<p class="description">{{ idea.description }}</p>
 		<div class="under_description">
 			<p class="readmore"><a href="{{ idea.get_absolute_url }}" title="Read more">View complete idea</a></p>
 			{# <span>|</span> #}
