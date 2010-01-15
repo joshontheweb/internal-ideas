@@ -1,0 +1,326 @@
+body {
+    color: #333;
+    font-family: "Lucida Grande", Helvetica, Tahoma, Arial;
+}
+
+div#header,
+div#footer {
+    min-height: 150px; 
+}
+
+a {
+    text-decoration: none;
+    color: #2d6685;
+}
+
+a:hover {
+    color: #333;
+}
+
+h1 {
+    font: normal normal normal 5.86em/1.5em impact, helvetica,tahoma;
+    color: #444;
+}
+
+/*******************************************************************************/
+/**** header *******************************************************************/
+/*******************************************************************************/
+
+#header_content {
+    margin-top: 50px;
+}
+
+#header_content textarea {
+    width: 573px;
+    height: 75px;
+}
+
+#header_content h1 {
+    margin-bottom: 0;
+}
+
+#header #num_left span {
+    font: normal italic normal 1.3em/1em georgia, times;
+    color: #999
+}
+
+#header form textarea.glow {
+	-moz-box-shadow: 1px 1px 10px rgba(88, 88, 88, 0.5);	
+	-webkit-box-shadow: 1px 1px 10px rgba(88, 88, 88, 0.5);	
+	box-shadow: 1px 1px 10px rgba(88, 88, 88, 0.5);
+}
+
+
+
+/*******************************************************************************/
+/**** content *********************************************************************/
+/*******************************************************************************/
+
+
+#content h3 a {
+    color: #333;
+    text-decoration: none;
+}
+
+#content h3 a:hover {
+    color: #000;
+}
+
+/**** idea *********************************************************************/
+
+.idea {
+    position: relative;
+    color: #666;
+/*    font: normal normal normal 1em/1.5em helvetica, 'Lucida Grande', tahoma, sans-serif;*/
+    margin: 20px 0;
+    border: 1px solid #ccc;
+    -webkit-box-shadow: 0 0 5px rgba(33,33,33,0.3);
+    -moz-box-shadow: 0 0 5px rgba(33,33,33,0.3);
+    box-shadow: 0 0 5px rgba(33,33,33,0.3);
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+/*    -moz-border-radius-bottom-left: 5px;*/
+/*    -moz-border-radius-bottom-right: 5px;*/
+/*    -webkit-border-bottom-left-radius: 5px;*/
+/*    -webkit-border-bottom-right-radius: 5px;*/
+/*    z-index: 100;*/
+}
+
+.idea #voting {
+/*    display: table;*/
+    border: 1px solid #748c99;
+    position: absolute;
+    left: -110px;
+    top: 30px;
+    width: 90px;
+    height: 80px;
+/*    padding: 15px 0 0 0;*/
+    text-align: center;
+    -webkit-box-shadow: 0 0 5px rgba(33,33,33,0.3);
+    -moz-box-shadow: 0 0 5px rgba(33,33,33,0.3);
+    box-shadow: 0 0 5px rgba(33,33,33,0.3);
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    background: -webkit-gradient(
+        radial, 50% 50%, 10, 50% 50%, 60, from(#afd2e6), to(#8bb6cc)
+    );
+    background: -moz-radial-gradient(
+      125px 25%, 10px, 125px 25%, 200px, from(#afd2e6), to(#8bb6cc)
+    ) no-repeat;
+    background-color: #8bb6cc;
+}
+
+.idea #voting input.vote {
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    background: url('../images/arrows.png');
+    width: 62px;
+    height: 33px;
+    left: 13px;
+}
+ 
+
+
+.idea #voting input.up {
+    top: -25px;
+}
+
+.idea #voting input.down {
+    bottom: -25px;
+    background-position: 0 -36px;
+}
+
+.idea #voting p {
+    margin: 0;
+}
+
+.idea #voting div.good_idea {
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    font-size: .9em;
+    margin-top: 8px;
+    text-align: center;
+}
+
+.idea #voting div.bad_idea {
+    width: 100%;
+    position: absolute;
+    font-size: .9em;
+    bottom: 10px;
+    text-align: center;
+}
+
+.idea #voting div.rank {
+/*    position: absolute;*/
+/*    top: 50%;*/
+/*    height: 74px;*/
+/*    margin-top: -37px;*/ /* negative half of the height */ 
+    color: #fff;
+    font: normal normal normal 3em/1em georgia, "Times New Roman", times, serif;
+    text-shadow: 0px 0px 7px rgba(33,33,33,0.6);
+}
+
+.idea #voting div.rank p {
+    line-height: 71px;
+}
+
+.idea #voting div.negative {
+    position: relative;
+    left: -8px;
+}
+
+.idea #voting .cast {
+/*    filter:alpha(opacity=70);*/
+/*    opacity: 0.7;*/
+}
+
+p.hover_info {
+    opacity: 0;
+    width: 80px;
+}
+
+#content div.title h3,
+#content div.title p {
+    color: #333;
+    margin-left: 5px;
+    font-weight: normal;
+    display: inline;
+}
+
+#content div.title h3 {
+    font-family: "Helvetica";
+}
+
+
+#content div.title p {
+    position: absolute;
+    right: 10px;
+    bottom: -16px;
+}
+
+#content div.title {
+    position: relative;
+    background: #8bb6cc;
+    text-shadow: #C3DEDF 0px 1px 1px;
+    padding: 0 5px;
+    border-top: 1px solid #748c99;
+    border-bottom: 1px solid #748c99;
+    border-left: 1px solid #7ba9c2;
+    border-right: 1px solid #7ba9c2;
+/*    -moz-border-radius: 10px 3px;*/
+/*    -webkit-border-radius: 10px 3px;*/
+/*    border-radius: 10px 3px;*/
+    -moz-border-radius-top-left: 3px;
+    -moz-border-radius-top-right: 3px;
+    -webkit-border-top-left-radius: 3px;
+    -webkit-border-top-right-radius: 3px;
+/*    background-image: -webkit-gradient(linear, 90% 0%, 0% 100%, from(#8bb6cc), to(#afd2e6));*/
+    background: -webkit-gradient(
+      radial, 125 25%, 10, 125 25%, 200, from(#afd2e6), to(#8bb6cc)
+    );
+
+    background: -moz-radial-gradient(
+      125px 25%, 10px, 125px 25%, 200px, from(#afd2e6), to(#8bb6cc)
+    ) no-repeat;
+}
+
+#content p.description {
+    margin-bottom: 0;
+    padding: 5px;
+    background-color: white;
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 10%, from(rgba(0, 0, 0, 0.1)), to(rgba(255, 255, 255, 0)));
+    background-image: -moz-linear-gradient(0% 10% 90deg, rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0)); 
+}
+
+#content div.under_description {
+    padding: 0 5px 5px 5px;
+}
+
+#content div.under_description > * {
+    display: inline;
+}
+
+#content div.under_description p.tags {
+    position: absolute;
+    right: 10px;
+    margin: 0; 
+}
+
+#content div.under_description p.readmore a {
+    margin-right: 80px;
+    color: white;
+    padding: 1px 3px;
+    text-shadow: 0px 1px 3px rgba(33,33,33,0.2);
+    background: #8bb6cc;
+    border: 1px solid #748c99;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+}
+
+#content div.under_description span {
+    margin: 0 10px;
+}
+
+#content a.tag {
+    color: #bbb;
+}
+
+#content a.tag:hover {
+    color: #666;
+}
+
+/*******************************************************************************/
+/**** comments *****************************************************************/
+/*******************************************************************************/
+
+#comments_wrapper {
+    margin: 50px 0 0 0;
+}
+
+/*******************************************************************************/
+/**** form *********************************************************************/
+/*******************************************************************************/
+
+form label {
+    display: block;
+}
+
+form p {
+    margin-bottom: 0;
+}
+
+/*******************************************************************************/
+/**** sidebar ******************************************************************/
+/*******************************************************************************/
+
+#sidebar {
+    overflow: hidden;
+}
+
+/*******************************************************************************/
+/**** tags_counted *************************************************************/
+/*******************************************************************************/
+
+#tags_counted ul {
+    list-style-type: none;
+}
+
+/*******************************************************************************/
+/**** tag_cloud *****************************************************************/
+/*******************************************************************************/
+
+.tag1 {font-size: 8pt;}
+.tag2 {font-size: 10pt;}
+.tag3 {font-size: 12pt;}
+.tag4 {font-size: 14pt;}
+.tag5 {font-size: 16pt;}
+.tag6 {font-size: 18pt;}
+.tag7 {font-size: 20pt;}
+.tag8 {font-size: 22pt;}
+.tag9 {font-size: 24pt;}
+.tag10 {font-size: 26pt;}

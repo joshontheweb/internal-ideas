@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load comments tagging_tags humanize %}
+
+{% block title %}
+	Object list
+{% endblock title %}
+
+{% block content %}
+	{% include 'idea/idea_list_include.html' %}
+{% endblock content %}

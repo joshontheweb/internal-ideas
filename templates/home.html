@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load tagging_tags humanize %}
+{% block header %}
+	<h1>What is your Idea?</h1>
+	<form action="" method="post">
+		<textarea id="idea_textarea"></textarea>
+	</form>
+	<p id="num_left">Characters left: <span>500</span></p>
+{% endblock header %}
+
+{% block content %}
+	{% include 'idea/idea_list_include.html' %}
+{% endblock content %}

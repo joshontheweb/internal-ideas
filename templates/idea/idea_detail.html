@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load comments tagging_tags humanize %}
+
+{% block title %}
+	Object detail
+{% endblock title %}
+
+{% block content %}
+		<h1>Here is an idea detailed</h1>
+		<h3>{{ idea.title }}</h3>
+		<p>Posted <span class="date">{{ idea.date|naturalday }}</span> by <span class="author"><a href="#" title="{{ idea.author }}'s profile">{{ idea.author|capfirst }}</a></span></p>
+		<p>{{ idea.description }}</p>
+		{% for tag in idea.get_tags %}
+			<a href="/ideas/tag/{{ tag }}" alt="{{ tag }}" title="{{ tag }}">{{ tag }}</a>
+		{% endfor %}
+		<div id="comments_wrapper">
+			<h2>Comments</h2>
+			{% get_comment_count for idea as comment_count %}
+			{% if comment_count %}
+				<p>There {{ comment_count|pluralize:'is,are' }} already {{ comment_count }} comment{{ comment_count|pluralize:'s' }}</p>
+			{% else %}
+				<p>No comments yet</p>
+			{% endif %}
+			{% render_comment_list for idea %}
+			<div id="comment_form">
+				<h2>Leave your thoughts</h2>
+				{% render_comment_form for idea %}
+			</div>
+		</div>
+		
+{% endblock content %}

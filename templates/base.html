@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+{% load comments tagging_tags humanize %}
+<html>
+	<head>
+		{% block style %}
+		<link rel="stylesheet" type="text/css" media="all" href="/media/style/reset.css" />
+		<link rel="stylesheet" type="text/css" media="all" href="/media/style/text.css" />
+		<link rel="stylesheet" type="text/css" media="all" href="/media/style/960.css" />
+		<link rel="stylesheet" type="text/css" media="all" href="/media/style/ideas.css" />	
+			{% block add_style %}
+			{% endblock add_style %}			
+		{% endblock style %}
+	
+		{% block script %}
+		<script type="text/javascript" src="/media/scripts/mootools-1.2.4-core.js"></script> 
+		<script type="text/javascript" src="/media/scripts/mootools-1.2.4.2-more.js"></script> 
+		<script type="text/javascript" src="/media/scripts/custom.js"></script> 
+			{% block add_script %}
+			{% endblock add_script %}
+		{% endblock script %}
+	
+		<title>
+			{% block title %}
+				Somethingcoded	
+			{% endblock title %}
+		</title>
+	</head>
+	<body>
+		<div id="header" class="container_16">
+			<div id="header_content" class="grid_10 prefix_3 suffix_3">
+				{% block header %}
+				{% endblock header %}
+			</div>
+		</div><!-- /#header -->
+		<div class="clear"></div>
+		<div id="main" class="container_16">
+			<div id="content" class="grid_10 prefix_3 suffix_3">
+				{% block content %}
+				{% endblock content %}
+			</div><!-- /#content -->
+		</div><!-- /#main -->
+		{# <div id="sidebar" class="grid_4 prefix_1"> #}
+		{# 		{% block sidebar %} #}
+		{# 		<div id="tags_counted"> #}
+		{# 			<h2>Tags</h2> #}
+		{# 			{% tags_for_model idea.Idea as idea_tags with counts %} #}
+		{# 			<ul> #}
+		{# 			{% for idea_tag in idea_tags %} #}
+		{# 			    <li> #}
+		{# 			        <a href="/ideas/tag/{{ idea_tag }}/">{{ idea_tag }}</a> #}
+		{# 			        <span class="tag_count">({{ idea_tag.count }})</span> #}
+		{# 				</li> #}
+		{# 			{% endfor %} #}
+		{# 			</ul> #}
+		{# 		</div><!-- /#tags_for_model_list --> #}
+			{# <div class="clear"></div> #}
+			{# <div id="tag_could"> #}
+			    {# <h2>Tag Cloud</h2> #}
+				{# <div class="group"> #}
+								{#         {% tag_cloud_for_model idea.Idea as idea_tags with steps=10 min_count=1 distribution=log %} #}
+								{# 			        <p> #}
+								{# {% for tag in idea_tags %} #}
+								{# 			           <a class="{{ tag.font_size }}" href="/ideas/tag/{{ tag }}/" title="{{ tag }}">{{ tag }}</a> #}
+								{# 			        {% endfor %} #}
+								{# </p> #}
+			    {# </div><!-- /.group --> #}
+			{# </div><!-- /#tagcould --> #}
+			{# {% endblock sidebar %} #}
+		{# </div><!-- /#sidebar --> #}
+		<div class="clear"></div>
+		<div id="footer" class="container_16">
+			{% block footer %}
+			{% endblock footer %}
+		</div><!-- /#footer -->
+	</body>
+</html>
