@@ -3,18 +3,18 @@
 <html>
 	<head>
 		{% block style %}
-		<link rel="stylesheet" type="text/css" media="all" href="media/style/reset.css" />
-		<link rel="stylesheet" type="text/css" media="all" href="media/style/text.css" />
-		<link rel="stylesheet" type="text/css" media="all" href="media/style/960.css" />
-		<link rel="stylesheet" type="text/css" media="all" href="media/style/ideas.css" />	
+		<link rel="stylesheet" type="text/css" media="all" href="{{ MEDIA_URL }}style/reset.css" />
+		<link rel="stylesheet" type="text/css" media="all" href="{{ MEDIA_URL }}style/text.css" />
+		<link rel="stylesheet" type="text/css" media="all" href="{{ MEDIA_URL }}style/960.css" />
+		<link rel="stylesheet" type="text/css" media="all" href="{{ MEDIA_URL }}style/ideas.css" />	
 			{% block add_style %}
 			{% endblock add_style %}			
 		{% endblock style %}
 	
 		{% block script %}
-		<script type="text/javascript" src="media/scripts/mootools-1.2.4-core.js"></script> 
-		<script type="text/javascript" src="media/scripts/mootools-1.2.4.2-more.js"></script> 
-		<script type="text/javascript" src="media/scripts/ideas.js"></script> 
+		<script type="text/javascript" src="{{ MEDIA_URL }}scripts/mootools-1.2.4-core.js"></script> 
+		<script type="text/javascript" src="{{ MEDIA_URL }}scripts/mootools-1.2.4.2-more.js"></script> 
+		<script type="text/javascript" src="{{ MEDIA_URL }}scripts/ideas.js"></script> 
 			{% block add_script %}
 			{% endblock add_script %}
 		{% endblock script %}
