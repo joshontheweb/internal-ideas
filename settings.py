@@ -1,4 +1,4 @@
-# Django settings for something project.
+#Django settings for something project.
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -112,10 +112,10 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     # 'contact',
     'customtags',
-    'django_evolution',
     'idea',
     # 'portfolio',
     'sorl.thumbnail',
-    'tagging',
+    'south',
+	'tagging',
     'voting',
 )

@@ -7,7 +7,7 @@ class Idea(models.Model):
     author = models.ForeignKey(User)
     date = models.DateTimeField(auto_now=True)
     title = models.CharField(max_length=60)
-    description = models.TextField(max_length=250)
+    description = models.TextField(max_length=500)
     tags = TagField()
     
     def __unicode__(self):
