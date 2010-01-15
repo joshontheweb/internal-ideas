@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load comments tagging_tags humanize tags %}
+
+{% block title %}
+	Tag list
+{% endblock title %}
+
+{% block header %}
+	<h1>{% hashtag tag.__unicode__ %}</h1>
+{% endblock header %}
+
+{% block content %}
+	{% include 'idea/idea_list_include.html' %}
+{% endblock content %}

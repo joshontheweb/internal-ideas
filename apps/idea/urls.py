@@ -38,7 +38,7 @@ urlpatterns += patterns('',
     url(r'^tag/(?P<tag>[^/]+)/$',
         tagged_object_list,
         dict(queryset_or_model=Idea, paginate_by=20, allow_empty=True,
-            template_object_name='idea'),
+            template_name='tag_list.html', template_object_name='idea'),
             name='idea_tag_list'),
 )
 
