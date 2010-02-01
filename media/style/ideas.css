@@ -50,7 +50,15 @@ h1 {
 	box-shadow: 1px 1px 10px rgba(88, 88, 88, 0.5);
 }
 
+/*******************************************************************************/
+/**** header *******************************************************************/
+/*******************************************************************************/
 
+#idea_form1 input.submit {
+    float: right;
+    border: 1px solid black;
+    background: #eee;
+}
 
 /*******************************************************************************/
 /**** content *********************************************************************/
@@ -87,7 +95,11 @@ h1 {
 /*    z-index: 100;*/
 }
 
-.idea #voting {
+.idea > p {
+    min-height: 75px;
+}
+
+.idea .voting {
 /*    display: table;*/
     border: 1px solid #748c99;
     position: absolute;
@@ -112,7 +124,7 @@ h1 {
     background-color: #8bb6cc;
 }
 
-.idea #voting input.vote {
+.idea .voting input.vote {
     border: none;
     cursor: pointer;
     position: absolute;
@@ -124,20 +136,20 @@ h1 {
  
 
 
-.idea #voting input.up {
+.idea .voting input.up {
     top: -25px;
 }
 
-.idea #voting input.down {
+.idea .voting input.down {
     bottom: -25px;
     background-position: 0 -36px;
 }
 
-.idea #voting p {
+.idea .voting p {
     margin: 0;
 }
 
-.idea #voting div.good_idea {
+.idea .voting div.good_idea {
     width: 100%;
     position: absolute;
     top: 0px;
@@ -146,7 +158,7 @@ h1 {
     text-align: center;
 }
 
-.idea #voting div.bad_idea {
+.idea .voting div.bad_idea {
     width: 100%;
     position: absolute;
     font-size: .9em;
@@ -154,7 +166,7 @@ h1 {
     text-align: center;
 }
 
-.idea #voting div.rank {
+.idea .voting div.rank {
 /*    position: absolute;*/
 /*    top: 50%;*/
 /*    height: 74px;*/
@@ -164,16 +176,16 @@ h1 {
     text-shadow: 0px 0px 7px rgba(33,33,33,0.6);
 }
 
-.idea #voting div.rank p {
+.idea .voting div.rank p {
     line-height: 71px;
 }
 
-.idea #voting div.negative {
+.idea .voting div.negative {
     position: relative;
     left: -8px;
 }
 
-.idea #voting .cast {
+.idea .voting .cast {
 /*    filter:alpha(opacity=70);*/
 /*    opacity: 0.7;*/
 }

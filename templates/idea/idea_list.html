@@ -1,9 +1,21 @@
 {% extends 'base.html' %}
-{% load comments tagging_tags humanize %}
-
-{% block title %}
-	Object list
-{% endblock title %}
+{% load tagging_tags humanize %}
+{% block header %}
+	<h1>What is your Idea?</h1>
+	<form id="idea_form1" action="ideas/submit" method="post">
+		
+		{# {% for field in idea_desc_form %} #}
+			{# {{ field }} #}
+		{# {% endfor %} #}
+		{# {{ idea_desc_form.as_p }} #}
+		{# {{ form }} #}
+		{# {{ form.description }} #}
+		{# this: {{ this }} #}
+		<textarea id="idea_textarea" name="description"></textarea>
+		<input class="submit" type="submit" name="part1" value="Submit Idea" />
+	</form>
+	<p id="num_left">Characters left: <span>500</span></p>
+{% endblock header %}
 
 {% block content %}
 	{% include 'idea/idea_list_include.html' %}

@@ -3,7 +3,15 @@
 {% block header %}
 	<h1>What is your Idea?</h1>
 	<form action="" method="post">
-		<textarea id="idea_textarea"></textarea>
+		
+		{% for field in idea_desc_form %}
+			{{ field }}
+		{% endfor %}
+		{# {{ form.as_p }} #}
+		{# {{ form }} #}
+		{# {{ form.description }} #}
+		{# this: {{ this }} #}
+		{# <textarea id="idea_textarea"></textarea> #}
 	</form>
 	<p id="num_left">Characters left: <span>500</span></p>
 {% endblock header %}

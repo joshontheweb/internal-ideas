@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	{# {% for field in idea_form %} #}
+		{# {{ field }} #}
+	{# {% endfor %} #}
+	<form action="" method="post">
+	{{ idea_form.as_p }}
+	<input type="submit" name="part2" value="Finish">
+	</form>
+{% endblock content %}

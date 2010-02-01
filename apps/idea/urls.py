@@ -33,6 +33,7 @@ urlpatterns = patterns('django.views.generic',
 urlpatterns += patterns('',
 
     # (r'^$', 'list', None, 'idea_list'),
+    (r'^submit$', 'idea.views.idea_submit'),
 
 
     url(r'^tag/(?P<tag>[^/]+)/$',

@@ -1,17 +1,17 @@
 {% load humanize voting_tags tags %}
-{% votes_by_user user on idea_list as vote_dict %}
-{% scores_for_objects idea_list as score_dict %}
+{# {% votes_by_user user on idea_list as vote_dict %} #}
+{# {% scores_for_objects idea_list as score_dict %} #}
 
 {% for idea in idea_list %}
 {# {% for idea in idea_list %} #}
-	{% dict_entry_for_item idea from vote_dict as vote %}
-	{% dict_entry_for_item idea from score_dict as score %}
+	{# {% dict_entry_for_item idea from vote_dict as vote %} #}
+	{# {% dict_entry_for_item idea from score_dict as score %} #}
 	
 	<div class="idea">
 		{# <div class="hover_info"> #}
 		{# 	<p>Great Idea!<!-- this will get filled by .js --></p> #}
 		{# </div><!-- /#info --> #}
-		<div id="voting">
+		<div class="voting">
 			{# <p class="hover_info">Great Idea!<!-- this will get filled by .js --></p> #}
 			{# <form class="ideavote" id="ideaup{{ idea.id }}" action="/ideas/{{ idea.id }}/{% if vote and vote.is_upvote %}clear{% else %}up{% endif %}vote/" method="POST"> #}
 			<form class="ideavote" id="ideaup{{ idea.id }}" action="/ideas/{{ idea.id }}/upvote/" method="POST">
@@ -19,7 +19,7 @@
 			      <input type="submit" value="" title="Approve this idea" id="ideauparrow{{ idea.id }}" class="vote up{% if vote and vote.is_upvote %} cast{% endif %}">
 			    </form>
 				<div class="good_idea"><p>Good idea</p></div>
-				<div class="rank{% if score.score|default:0 < 0 %} negative{% endif %}"><p>{{ score.score|default:0 }}</p></div>
+				<div class="rank{% if idea.score|default:0 < 0 %} negative{% endif %}"><p>{{ idea.score|default:0 }}</p></div>
 				<div class="bad_idea"><p>Bad idea</p></div>
 			    {# <form class="ideavote" id="ideadown{{ idea.id }}" action="/ideas/{{ idea.id }}/{% if vote and vote.is_downvote %}clear{% else %}down{% endif %}vote/" method="POST"> #}
 			    <form class="ideavote" id="ideadown{{ idea.id }}" action="/ideas/{{ idea.id }}/downvote/" method="POST">

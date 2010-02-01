@@ -18,18 +18,20 @@ urlpatterns = patterns('',
     (r'^comments/', include('django.contrib.comments.urls')),
     (r'^ideas/', include('idea.urls')),
     (r'^accounts/login/$', 'django.contrib.auth.views.login'),
+    (r'^$', 'idea.views.idea_list'),    
 )
 
-from idea.models import Idea
+from idea.models import Idea, IdeaForm
 home_dict = {
     'queryset': Idea.objects.all(),
     'template_name': 'home.html',
     'template_object_name': 'idea',
+    'extra_context': { 'form': IdeaForm, 'this': 'THAT' },
 }
 
 # generic views
 urlpatterns += patterns('django.views.generic',
-    (r'^$', 'list_detail.object_list', home_dict),    
+    # (r'^$', 'list_detail.object_list', home_dict),    
 )
 
 
