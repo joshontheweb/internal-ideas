@@ -25,7 +25,7 @@ urlpatterns = patterns('django.views.generic',
         ),
     ),
 
-    (r'^(?P<object_id>\d+)/$', 'list_detail.object_detail', info_dict, 'idea_detail'),
+    # (r'^(?P<object_id>\d+)/$', 'list_detail.object_detail', info_dict, 'idea_detail'),
     (r'^$', 'list_detail.object_list', info_dict, 'idea_detail'),
 
 )
@@ -34,6 +34,7 @@ urlpatterns += patterns('',
 
     # (r'^$', 'list', None, 'idea_list'),
     (r'^submit$', 'idea.views.idea_submit'),
+    (r'^(?P<object_id>\d+)/$', 'idea.views.idea_detail', None, 'idea_detail'),
 
 
     url(r'^tag/(?P<tag>[^/]+)/$',

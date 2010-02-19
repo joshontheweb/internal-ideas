@@ -1,0 +1,16 @@
+{% load comments humanize %}
+{% get_comment_list for idea as comment_list %}
+{% for comment in comment_list %}
+    <div class="comment">
+	    <a name="c{{ comment.id }}"></a>
+	    {# <a href="{% get_comment_permalink comment %}"> #}
+	    {#     permalink for comment #{{ forloop.counter }} #}
+	    {# </a> #}
+		<p class="comment_meta">
+			Posted {{ comment.submit_date|naturalday }} by <a href="{{ comment.user_url }}">{{ comment.user_name }}</a> 
+		</p>
+		<p class="comment_body">
+			{{ comment.comment }}
+		</p>
+	</div> <!-- /.comment -->
+{% endfor %}

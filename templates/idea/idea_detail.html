@@ -1,31 +1,69 @@
 {% extends 'base.html' %}
-{% load comments tagging_tags humanize %}
+{% load comments tags tagging_tags humanize %}
 
 {% block title %}
-	Object detail
+	Idea Detail
 {% endblock title %}
 
+{% block header %}
+	<h1>Detail View</h1>
+{% endblock header %}
+
 {% block content %}
-		<h1>Here is an idea detailed</h1>
-		<h3>{{ idea.title }}</h3>
-		<p>Posted <span class="date">{{ idea.date|naturalday }}</span> by <span class="author"><a href="#" title="{{ idea.author }}'s profile">{{ idea.author|capfirst }}</a></span></p>
-		<p>{{ idea.description }}</p>
-		{% for tag in idea.get_tags %}
-			<a href="/ideas/tag/{{ tag }}" alt="{{ tag }}" title="{{ tag }}">{{ tag }}</a>
-		{% endfor %}
-		<div id="comments_wrapper">
-			<h2>Comments</h2>
-			{% get_comment_count for idea as comment_count %}
-			{% if comment_count %}
-				<p>There {{ comment_count|pluralize:'is,are' }} already {{ comment_count }} comment{{ comment_count|pluralize:'s' }}</p>
-			{% else %}
-				<p>No comments yet</p>
-			{% endif %}
-			{% render_comment_list for idea %}
-			<div id="comment_form">
-				<h2>Leave your thoughts</h2>
-				{% render_comment_form for idea %}
-			</div>
+	<div class="idea detail">
+		{# <div class="hover_info"> #}
+		{# 	<p>Great Idea!<!-- this will get filled by .js --></p> #}
+		{# </div><!-- /#info --> #}
+		<div class="voting">
+			{# <p class="hover_info">Great Idea!<!-- this will get filled by .js --></p> #}
+			{# <form class="ideavote" id="ideaup{{ idea.id }}" action="/ideas/{{ idea.id }}/{% if vote and vote.is_upvote %}clear{% else %}up{% endif %}vote/" method="POST"> #}
+			<form class="ideavote" id="ideaup{{ idea.id }}" action="/ideas/{{ idea.id }}/upvote/" method="POST">
+			      {# <input type="image" id="linkuparrow{{ idea.id }}" src="/media/images/up{% if vote and vote.is_upvote %}mod{% else %}grey{% endif %}.png"> #}
+			      <input type="submit" value="" title="Approve this idea" id="ideauparrow{{ idea.id }}" class="vote up{% if vote and vote.is_upvote %} cast{% endif %}">
+			    </form>
+				<div class="good_idea"><p>Good idea</p></div>
+				<div class="rank{% if idea.score|default:0 < 0 %} negative{% endif %}"><p>{{ idea.score|default:0 }}</p></div>
+				<div class="bad_idea"><p>Bad idea</p></div>
+			    {# <form class="ideavote" id="ideadown{{ idea.id }}" action="/ideas/{{ idea.id }}/{% if vote and vote.is_downvote %}clear{% else %}down{% endif %}vote/" method="POST"> #}
+			    <form class="ideavote" id="ideadown{{ idea.id }}" action="/ideas/{{ idea.id }}/downvote/" method="POST">
+			      {# <input type="image" id="ideadownarrow{{ idea.id }}" src="/media/images/down{% if vote and vote.is_downvote %}mod{% else %}grey{% endif %}.png"> #}
+			      <input type="submit" value="" title="This is a bad idea" id="ideadownarrow{{ idea.id }}" class="vote down{% if vote and vote.is_downvote %} cast{% endif %}">
+			    </form>
+		
+				{# <span class="score" id="ideascore{{ link.id }}" title="after {{ score.num_votes|default:0 }} vote{{ score.num_votes|default:0|pluralize }}"> #}
+				{# 	{{ score.score|default:0 }} point{{ score.score|default:0|pluralize }} #}
+				{# </span> #}
+
+		</div><!-- /#voting -->
+		<div class="title">
+			<h3><a href="{{ idea.get_absolute_url }}" title="View the rest of{{ idea.title }}">{{ idea.title }}</a></h3>
+			<p>Posted <span class="date">{{ idea.date|naturalday }}</span> by <span class="author"><a href="#" title="{{ idea.author }}'s profile">{{ idea.author|capfirst }}</a></span></p>
+		</div><!-- /.title -->
+		<p class="description">{{ idea.description }}</p>
+		<div class="under_description">
+			{# <p class="readmore"><a href="{{ idea.get_absolute_url }}" title="Read more">View complete idea</a></p> #}
+			{# <span>|</span> #}
+			<p class="tags">
+				{% for tag in idea.get_tags %}
+					<a href="/ideas/tag/{{ tag }}" class="tag" alt="{{ tag }}" title="{{ tag }} tag">{% hashtag tag.__unicode__ %}</a>
+				{% endfor %}
+			</p>
 		</div>
+	</div>
+
+	<div id="comments_wrapper">
+		<h2>Comments</h2>
+		{% get_comment_count for idea as comment_count %}
+		{% if comment_count %}
+			<p>There {{ comment_count|pluralize:'is,are' }} already {{ comment_count }} comment{{ comment_count|pluralize:'s' }}</p>
+		{% else %}
+			<p>No comments yet</p>
+		{% endif %}
+		{% render_comment_list for idea %}
+		<div id="comment_form">
+			<h2>Leave your thoughts</h2>
+			{% render_comment_form for idea %}
+		</div>
+	</div>
 		
 {% endblock content %}
