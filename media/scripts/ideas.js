@@ -82,7 +82,7 @@ var voteAjax = function(event) {
         url: url,
         method: 'post',
         onSuccess: function(response) {
-            // alert(response);
+            alert(response);
             itemMeta = JSON.decode(response);
             var el = new Element('div', {
                 'html': html,
