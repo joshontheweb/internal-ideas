@@ -81,7 +81,7 @@ var voteAjax = function(event) {
         url: url,
         method: 'post',
         onSuccess: function(response) {
-            alert(response);
+            // alert(response);
             itemMeta = JSON.decode(response);
             if (itemMeta.success == false) {
                 var loginRequest = new Request.HTML({
