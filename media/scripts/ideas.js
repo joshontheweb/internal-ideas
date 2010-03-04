@@ -73,7 +73,6 @@ var voteAjax = function(event) {
         html += "<input type='submit' value='No Thanks' />";    
         html += "</form>";
     event.stop();
-    var container = $('main');
     var scoreEl = rankEl.getElement('p');
     var form = this.getParent('form');
     var url = form.get('action');
@@ -84,32 +83,22 @@ var voteAjax = function(event) {
         onSuccess: function(response) {
             alert(response);
             itemMeta = JSON.decode(response);
-            var el = new Element('div', {
-                'html': html,
-                'id': 'vote_popup',
-                'styles': {
-                    'opacity': 0,
-                },
-            });
-            
-            var backdrop = new Element('div', {
-               'id': 'backdrop',
-               'styles': {
-                   'opacity': 0,
-                }, 
-            });
-            // this.getParent('div.voting');
-            scoreEl.set('text', itemMeta.score.score);
-            backdrop.inject(container, 'top').fade('0.4');
-            el.inject(container, 'top').fade('in');
-            
-            // click events for popup
-            var dismiss = $$("#backdrop", "#vote_popup input");
-            dismiss.each(function(el){
-                el.addEvents({
-                    'click': modalDismiss.bind(dismiss),
-                })
-            })
+            if (itemMeta.success == false) {
+                var loginRequest = new Request.HTML({
+                    method: 'get',
+                    url: "/accounts/login/",
+                    onSuccess: function(responseTree, responseElements) {
+                        // alert(responseTree.item(1));
+                        var contentDiv = new Elements(responseElements).filter('div#content');
+                        var html = '<h2>Please Login</h2>'+ contentDiv.get('html');
+                        modalPopup(html);
+                    },
+                }).send();
+            }
+            else if (itemMeta.success == true) {
+                scoreSet(scoreEl, itemMeta);
+                modalPopup(html);
+            }
         }
     }).send();
     
@@ -120,12 +109,57 @@ var textSwap = function(el, newText) {
     el.set('text', newText);
 }
 
+var scoreSet = function(scoreEl, scoredObj) {
+    scoreEl.set('text', scoredObj.score.score);
+}
+
+var modalPopup = function(html) {
+    var container = $('main');
+    var el = new Element('div', {
+        'html': html,
+        'id': 'vote_popup',
+        'styles': {
+            'opacity': 0,
+        },
+    });
+    
+    var backdrop = new Element('div', {
+       'id': 'backdrop',
+       'styles': {
+           'opacity': 0,
+        }, 
+    });
+    // this.getParent('div.voting');
+    backdrop.inject(container, 'top').fade('0.4');
+    el.inject(container, 'top').fade('in');
+    
+    // click events for popup
+    var dismiss = $$("#backdrop", "#vote_popup input[type=submit]");
+    dismiss.each(function(el){
+        if (el.get('tag') == 'input') {
+            var form = el.getParent('form');
+            el.addEvents({
+                'click': modalSubmit.bind(form),
+            })
+        }
+        else {
+            el.addEvents({
+                'click': modalDismiss.bind(dismiss),
+            })
+        }
+        el.addEvents({
+            'click': modalSubmit.bind(form),
+            // 'click': modalDismiss.bind(dismiss),
+        })
+    })
+}
+
 var modalDismiss = function(event) {
-    event.stop();
+    // event.stop();
     var modal = $$('div#vote_popup', '#backdrop');
     if ($$('#vote_popup textarea').get('value') == '') {
         // $$('#vote_popup h2').set('text', 'Next Time');
-        textSwap($$('#vote_popup h2'), 'Next time then...');
+        textSwap($$('#vote_popup h2'), 'Thank You');
     }
     else {
         // $$('#vote_popup h2').set('text', 'Thank You');
@@ -139,6 +173,21 @@ var modalDismiss = function(event) {
     modal.each(function(el){
         fadeDestroy.delay(300, el);
     });
+}
+
+var modalSubmit = function(event) {
+    event.stop();
+    var url = this.get('action');
+    var data = this.toQueryString();
+    // alert(url);
+    // alert(data);
+    request = new Request({
+        method: 'post',
+        url: url,
+        data: data,
+    }).send();
+    // window.location = "/";
+    modalDismiss();
 }
 
 window.addEvent('domready', function() {
