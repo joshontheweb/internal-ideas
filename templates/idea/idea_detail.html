@@ -18,21 +18,21 @@
 			{# <p class="hover_info">Great Idea!<!-- this will get filled by .js --></p> #}
 			{# <form class="ideavote" id="ideaup{{ idea.id }}" action="/ideas/{{ idea.id }}/{% if vote and vote.is_upvote %}clear{% else %}up{% endif %}vote/" method="POST"> #}
 			<form class="ideavote" id="ideaup{{ idea.id }}" action="/ideas/{{ idea.id }}/upvote/" method="POST">
-			      {# <input type="image" id="linkuparrow{{ idea.id }}" src="/media/images/up{% if vote and vote.is_upvote %}mod{% else %}grey{% endif %}.png"> #}
-			      <input type="submit" value="" title="Approve this idea" id="ideauparrow{{ idea.id }}" class="vote up{% if vote and vote.is_upvote %} cast{% endif %}">
-			    </form>
-				<div class="good_idea"><p>Good idea</p></div>
-				<div class="rank{% if idea.score|default:0 < 0 %} negative{% endif %}"><p>{{ idea.score|default:0 }}</p></div>
-				<div class="bad_idea"><p>Bad idea</p></div>
-			    {# <form class="ideavote" id="ideadown{{ idea.id }}" action="/ideas/{{ idea.id }}/{% if vote and vote.is_downvote %}clear{% else %}down{% endif %}vote/" method="POST"> #}
-			    <form class="ideavote" id="ideadown{{ idea.id }}" action="/ideas/{{ idea.id }}/downvote/" method="POST">
-			      {# <input type="image" id="ideadownarrow{{ idea.id }}" src="/media/images/down{% if vote and vote.is_downvote %}mod{% else %}grey{% endif %}.png"> #}
-			      <input type="submit" value="" title="This is a bad idea" id="ideadownarrow{{ idea.id }}" class="vote down{% if vote and vote.is_downvote %} cast{% endif %}">
-			    </form>
-		
-				{# <span class="score" id="ideascore{{ link.id }}" title="after {{ score.num_votes|default:0 }} vote{{ score.num_votes|default:0|pluralize }}"> #}
-				{# 	{{ score.score|default:0 }} point{{ score.score|default:0|pluralize }} #}
-				{# </span> #}
+		      {# <input type="image" id="linkuparrow{{ idea.id }}" src="/media/images/up{% if vote and vote.is_upvote %}mod{% else %}grey{% endif %}.png"> #}
+		      <input type="submit" value="" title="Approve this idea" id="ideauparrow{{ idea.id }}" class="vote up{% if vote and vote.is_upvote %} cast{% endif %}">
+		    </form>
+			<div class="good_idea"><p>Good idea</p></div>
+			<div class="rank{% if idea.score|default:0 < 0 %} negative{% endif %}"><p class="score">{{ idea.score|default:0 }}</p></div>
+			<div class="bad_idea"><p>Bad idea</p></div>
+		    {# <form class="ideavote" id="ideadown{{ idea.id }}" action="/ideas/{{ idea.id }}/{% if vote and vote.is_downvote %}clear{% else %}down{% endif %}vote/" method="POST"> #}
+		    <form class="ideavote" id="ideadown{{ idea.id }}" action="/ideas/{{ idea.id }}/downvote/" method="POST">
+		      {# <input type="image" id="ideadownarrow{{ idea.id }}" src="/media/images/down{% if vote and vote.is_downvote %}mod{% else %}grey{% endif %}.png"> #}
+		      <input type="submit" value="" title="This is a bad idea" id="ideadownarrow{{ idea.id }}" class="vote down{% if vote and vote.is_downvote %} cast{% endif %}">
+		    </form>
+	
+			{# <span class="score" id="ideascore{{ link.id }}" title="after {{ score.num_votes|default:0 }} vote{{ score.num_votes|default:0|pluralize }}"> #}
+			{# 	{{ score.score|default:0 }} point{{ score.score|default:0|pluralize }} #}
+			{# </span> #}
 
 		</div><!-- /#voting -->
 		<div class="title">

@@ -11,7 +11,7 @@ check_length = function() {
 readMoreEnter = function(){
     var enterMorph = this.get('morph');
     enterMorph.start({
-        'background-color': '#748c99',
+        'background-color': '#748c99'
     })
 }
 
@@ -19,7 +19,7 @@ readMoreLeave = function(){
     var leaveMorph = this.get('morph');
     var oldColor = this.get('oldColor');
     leaveMorph.start({
-        'background-color': this.get('oldColor'),
+        'background-color': this.get('oldColor')
     });
 }
 
@@ -36,7 +36,7 @@ voteHoverEnter = function(){
     alert(el.get('text'));
     var morphEl = new Fx.Morph(el, {'duration': 150});
     morphEl.start({
-        'opacity': 1,
+        'opacity': 1
     });
 }
 
@@ -50,7 +50,7 @@ voteHoverEnter = function(){
     }
     morphEl = new Fx.Morph(el, {'duration': 150, 'link': 'cancel'});        
     morphEl.start({
-        'opacity': 1,
+        'opacity': 1
     });
 }
 
@@ -59,6 +59,85 @@ voteHoverLeave = function(){
     morphEl = new Fx.Morph(el, {'duration': 150, 'link': 'cancel'});        
     morphEl.start({
         'opacity': 0,
+    });
+}
+
+var voteAjax = function(event) {
+    var voteDiv = this.getParent('div.voting');
+    var rankEl = voteDiv.getChildren('.rank');
+    var html = "<h2>Why?</h2>";
+        html += "<p>Your vote means so much more if you provide feedback.</p>"
+        html += "<form action=''>";
+        html += "<textarea></textarea>";
+        html += "<input type='submit' value='Submit' />";
+        html += "<input type='submit' value='No Thanks' />";    
+        html += "</form>";
+    event.stop();
+    var container = $('main');
+    var scoreEl = rankEl.getElement('p');
+    var form = this.getParent('form');
+    var url = form.get('action');
+    
+    var request = new Request({
+        url: url,
+        method: 'post',
+        onSuccess: function(response) {
+            // alert(response);
+            itemMeta = JSON.decode(response);
+            var el = new Element('div', {
+                'html': html,
+                'id': 'vote_popup',
+                'styles': {
+                    'opacity': 0,
+                },
+            });
+            
+            var backdrop = new Element('div', {
+               'id': 'backdrop',
+               'styles': {
+                   'opacity': 0,
+                }, 
+            });
+            // this.getParent('div.voting');
+            scoreEl.set('text', itemMeta.score.score);
+            backdrop.inject(container, 'top').fade('0.4');
+            el.inject(container, 'top').fade('in');
+            
+            // click events for popup
+            var dismiss = $$("#backdrop", "#vote_popup input");
+            dismiss.each(function(el){
+                el.addEvents({
+                    'click': modalDismiss.bind(dismiss),
+                })
+            })
+        }
+    }).send();
+    
+}
+
+var textSwap = function(el, newText) {
+    // el.fade('out').get('tween').chain(function() { el.set('text', newText) })
+    el.set('text', newText);
+}
+
+var modalDismiss = function(event) {
+    event.stop();
+    var modal = $$('div#vote_popup', '#backdrop');
+    if ($$('#vote_popup textarea').get('value') == '') {
+        // $$('#vote_popup h2').set('text', 'Next Time');
+        textSwap($$('#vote_popup h2'), 'Next time then...');
+    }
+    else {
+        // $$('#vote_popup h2').set('text', 'Thank You');
+        textSwap($$('#vote_popup h2'), 'Thank You');
+    }
+    var fadeDestroy = function() {
+        var el = this;
+        this.fade('out').get('tween').chain(function(){ el.destroy() });
+    }
+    
+    modal.each(function(el){
+        fadeDestroy.delay(300, el);
     });
 }
 
@@ -82,14 +161,15 @@ window.addEvent('domready', function() {
         'focus': inputFocus,
         'blur': inputBlur,
         'keydown': check_length,
-        'keyup': check_length,
+        'keyup': check_length
     });
     
     // voting hover info
     $$('input.vote').each(function(el){
         el.addEvents({
-            'mouseenter': voteHoverEnter,
-            'mouseleave': voteHoverLeave,
+            'click': voteAjax.bind(el),
+            // 'mouseenter': voteHoverEnter,
+            // 'mouseleave': voteHoverLeave,
         });
     });
 });
