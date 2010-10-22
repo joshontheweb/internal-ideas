@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>Login!</h1>
+{% endblock %}
+
+{% block content %}
+    <form id="login_form" action="accounts/login" method="post">
+        Username: <input type="text" name="username" /><br />
+        Password: <input type="password" name="password" />
+        {% if return_url %}
+            <input type="hidden" name="return_url" value="{{ return_url }}" />
+        {% endif %}
+        <input type="submit" value="Submit" />
+    </form>
+{% endblock %}

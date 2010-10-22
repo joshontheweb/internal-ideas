@@ -17,6 +17,7 @@ urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
     (r'^comments/', include('django.contrib.comments.urls')),
     (r'^ideas/', include('idea.urls')),
+    (r'^accounts/', include('accounts.urls')),
     (r'^accounts/login/$', 'django.contrib.auth.views.login'),
     (r'^$', 'idea.views.idea_list'),    
 )
