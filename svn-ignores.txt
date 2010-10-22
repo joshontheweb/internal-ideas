@@ -1,7 +1,0 @@
-## apply this file recursively to the current directory using
-## "svn -R propset svn:ignore -F svn-ignores.txt ."
-
-*.pyc
-*~
-#*#
-settings.py
