@@ -45,7 +45,7 @@
 			{# <span>|</span> #}
 			<p class="tags">
 				{% for tag in idea.get_tags %}
-					<a href="/ideas/tag/{{ tag }}" class="tag" alt="{{ tag }}" title="{{ tag }} tag">{% hashtag tag.__unicode__ %}</a>
+					<a href="/ideas/tag/{{ tag }}" class="tag" alt="{{ tag }}" title="{{ tag }} tag">{% hashtag tag.name %}</a>
 				{% endfor %}
 			</p>
 		</div>

@@ -27,7 +27,7 @@ h1 {
 /*******************************************************************************/
 
 #header_content {
-    margin-top: 50px;
+    margin-top: 15px;
 }
 
 #header_content textarea {
@@ -54,6 +54,10 @@ h1 {
 	box-shadow: 1px 1px 10px rgba(88, 88, 88, 0.5);
 }
 
+#header .login {
+    margin-left: auto;
+    margin-right: 15px;
+}
 /*******************************************************************************/
 /**** header *******************************************************************/
 /*******************************************************************************/
@@ -476,3 +480,12 @@ form p {
 .tag8 {font-size: 22pt;}
 .tag9 {font-size: 24pt;}
 .tag10 {font-size: 26pt;}
+
+/*********************************/
+/*** Messaging *******************/
+.messages { width: 350px; margin: 15px auto 15px auto; }
+.messages ul { list-style: none; }
+.messages li { padding: 2px; text-align: center;}
+.messages li.info { background-color: #FFA; }
+.messages li.error { background-color: #F64; }
+.messages li.success { background-color: #7D7; }

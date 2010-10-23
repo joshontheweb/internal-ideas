@@ -1,6 +1,9 @@
 import django.contrib.auth as django_auth
 from django.http import HttpResponseRedirect, HttpResponse
+from django.template import RequestContext
+from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response
+from django.contrib import messages
 
 def login(request):
     ''' logs in a user '''
@@ -19,18 +22,22 @@ def login(request):
                 if return_url:
                     return HttpResponseRedirect(return_url)
                 else:
-                    return HttpResponse('Alright! You\'re Logged In')
+                    messages.success(request, "Login Complete")
+                    return HttpResponseRedirect("/")
             else:
-                return HttpResponse('This Account is Disabled')
+                messages.error(request, 'This Account is Disabled')
+                return HttpResponseRedirect("/")
         else:
-            return HttpResponse('Invalid Login')
+            messages.error(request, "Invalid Credentials")
+            return HttpResponseRedirect(reverse('login'))
     else:
         try:
             template_vars['return_url'] = request.GET['next']
         except KeyError:
             pass
-        return render_to_response('accounts/login.html', template_vars)
+        return render_to_response('accounts/login.html', template_vars, context_instance=RequestContext(request))
 
 def logout(request):
     django_auth.logout(request)
+    messages.success(request, 'Logout Complete')
     return HttpResponseRedirect('/')

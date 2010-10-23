@@ -1,12 +1,16 @@
 # ideas views.py
+from django.contrib.auth.models import User
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
 from django.template import RequestContext
+from django.contrib import messages
 from models import Idea, IdeaForm
 from voting.models import Vote
 import operator
 
 def idea_list(request):
+    if request.user.is_authenticated():
+        user = User.objects.get(username=request.user.username)
     idea_list = Idea.objects.all()
     for idea in idea_list:
         score_dict = Vote.objects.get_score(idea)

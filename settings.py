@@ -78,12 +78,14 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 	'django.core.context_processors.auth',
 	'django.core.context_processors.request',
 	'django.core.context_processors.media',
+    'django.contrib.messages.context_processors.messages',
 )
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
 )
 
 ROOT_URLCONF = 'urls'
@@ -111,6 +113,7 @@ INSTALLED_APPS = (
     'django.contrib.humanize',
     'django.contrib.sessions',
     'django.contrib.sites',
+    'django.contrib.messages',
     # 'contact',
     'customtags',
     'idea',

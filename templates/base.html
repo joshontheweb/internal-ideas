@@ -26,8 +26,27 @@
 		</title>
 	</head>
 	<body>
+        {% block messages %}
+            {% if messages %}
+                <div class="messages">
+                    <ul>
+                        {% for message in messages %}
+                            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        {% endblock %}
+
 		<div id="header" class="container_16">
 			<div id="header_content" class="grid_10 prefix_3 suffix_3">
+                <div class="prefix_9">
+                    {% if user.username != '' %}
+                        <a href="/accounts/logout">Logout</a>
+                    {% else %}
+                        <a href="/accounts/login/">Login</a>
+                    {% endif %}
+                </div>
 				{% block header %}
 				{% endblock header %}
 			</div>
