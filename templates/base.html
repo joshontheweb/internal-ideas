@@ -26,9 +26,7 @@
 		</title>
 	</head>
 	<body>
-        {% block messages %}
-            {% if messages %}
-                <div class="messages">
+        {% block messages %} {% if messages %} <div class="messages">
                     <ul>
                         {% for message in messages %}
                             <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
@@ -53,40 +51,31 @@
 		</div><!-- /#header -->
 		<div class="clear"></div>
 		<div id="main" class="container_16">
-			<div id="content" class="grid_10 prefix_3 suffix_3">
+			<div id="content" class="grid_10 prefix_3">
 				{% block content %}
 				{% endblock content %}
 			</div><!-- /#content -->
-		</div><!-- /#main -->
-		{# <div id="sidebar" class="grid_4 prefix_1"> #}
-		{# 		{% block sidebar %} #}
-		{# 		<div id="tags_counted"> #}
-		{# 			<h2>Tags</h2> #}
-		{# 			{% tags_for_model idea.Idea as idea_tags with counts %} #}
-		{# 			<ul> #}
-		{# 			{% for idea_tag in idea_tags %} #}
-		{# 			    <li> #}
-		{# 			        <a href="/ideas/tag/{{ idea_tag }}/">{{ idea_tag }}</a> #}
-		{# 			        <span class="tag_count">({{ idea_tag.count }})</span> #}
-		{# 				</li> #}
-		{# 			{% endfor %} #}
-		{# 			</ul> #}
-		{# 		</div><!-- /#tags_for_model_list --> #}
-			{# <div class="clear"></div> #}
-			{# <div id="tag_could"> #}
-			    {# <h2>Tag Cloud</h2> #}
-				{# <div class="group"> #}
-								{#         {% tag_cloud_for_model idea.Idea as idea_tags with steps=10 min_count=1 distribution=log %} #}
-								{# 			        <p> #}
-								{# {% for tag in idea_tags %} #}
-								{# 			           <a class="{{ tag.font_size }}" href="/ideas/tag/{{ tag }}/" title="{{ tag }}">{{ tag }}</a> #}
-								{# 			        {% endfor %} #}
-								{# </p> #}
-			    {# </div><!-- /.group --> #}
-			{# </div><!-- /#tagcould --> #}
-			{# {% endblock sidebar %} #}
-		{# </div><!-- /#sidebar --> #}
+            <div id="sidebar" class="grid_3"> 
+                {% block sidebar %} 
+                <div id="tags_counted" class="idea"> 
+                    <div class="title">
+                        <h3>Tags</h3> 
+                    </div>
+                    {% tags_for_model idea.Idea as idea_tags with counts %} 
+                    <ul> 
+                        {% for idea_tag in idea_tags %} 
+                            <li> 
+                                <a href="/ideas/tag/{{ idea_tag }}/">{{ idea_tag }}</a> 
+                                <span class="tag_count">({{ idea_tag.count }})</span> 
+                            </li> 
+                        {% endfor %} 
+                    </ul> 
+                </div><!-- /#tags_for_model_list --> 
+                <div class="clear"></div> 
+                {% endblock sidebar %} 
+            </div><!-- /#sidebar --> 
 		<div class="clear"></div>
+		</div><!-- /#main -->
 		<div id="footer" class="container_16">
 			{% block footer %}
 			{% endblock footer %}
