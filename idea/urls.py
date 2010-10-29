@@ -15,6 +15,11 @@ info_dict = {
 
 # generic views
 urlpatterns = patterns('django.views.generic',
+    # (r'^(?P<object_id>\d+)/$', 'list_detail.object_detail', info_dict, 'idea_detail'),
+    (r'^$', 'list_detail.object_list', info_dict, 'idea_detail'),
+)
+
+urlpatterns += patterns('',
     (r'^(?P<object_id>\d+)/(?P<direction>up|down|clear)vote/?$',
         vote_on_object, 
         dict(
@@ -24,13 +29,6 @@ urlpatterns = patterns('django.views.generic',
             post_vote_redirect='/',
         ),
     ),
-
-    # (r'^(?P<object_id>\d+)/$', 'list_detail.object_detail', info_dict, 'idea_detail'),
-    (r'^$', 'list_detail.object_list', info_dict, 'idea_detail'),
-
-)
-
-urlpatterns += patterns('',
 
     # (r'^$', 'list', None, 'idea_list'),
     (r'^submit$', 'idea.views.idea_submit'),
